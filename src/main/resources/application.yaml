@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    username: records_app
+    password: records_app
+    url: postgresql://localhost:5432/records_app?allowPublicKeyRetrival=true&useSSL=false&createDatabaseIfNotExist=true
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
