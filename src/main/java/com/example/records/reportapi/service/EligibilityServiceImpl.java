@@ -8,6 +8,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import com.example.records.reportapi.dto.SearchRequestDto;
 import com.example.records.reportapi.dto.SearchResponseDto;
@@ -28,7 +31,7 @@ public class EligibilityServiceImpl implements EligibilityService {
 
     @Override
     public List<String> getUniquePlanStatuses() {
-       return eligRepo.findPlanNameStatuses();
+       return eligRepo.findPlanStatuses();
     }
 
     @Override
@@ -72,8 +75,28 @@ public class EligibilityServiceImpl implements EligibilityService {
 
     @Override
     public void generateExcel(HttpServletResponse httpServletResponse) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateExcel'");
+        List<EligibilityDetails> entities = eligRepo.findAll();
+        HSSFWorkbook workBook = new HSSFWorkbook();
+        HSSFSheet sheet = workBook.createSheet();
+        HSSFRow headerRow = sheet.createRow(0);
+
+        headerRow.createCell(0).setCellValue("S.No");
+        headerRow.createCell(1).setCellValue("Name");
+        headerRow.createCell(2).setCellValue("SSN");
+        headerRow.createCell(3).setCellValue("Gender");
+        headerRow.createCell(4).setCellValue("Mobile");
+        int i = 1;
+        for(EligibilityDetails e: entities){
+            HSSFRow row = sheet.createRow(i);
+            row.createCell(0).setCellValue(i);
+            row.createCell(1).setCellValue(e.getName());
+            row.createCell(2).setCellValue(e.getSsn());
+            row.createCell(3).setCellValue(e.getGender());
+            row.createCell(4).setCellValue(e.getMobile());
+            i++;
+        }
+
+
     }
 
     @Override

@@ -2,7 +2,7 @@ spring:
   datasource:
     username: records_app
     password: records_app
-    url: postgresql://localhost:5432/records_app?allowPublicKeyRetrival=true&useSSL=false&createDatabaseIfNotExist=true
+    url: jdbc:postgresql://localhost:5432/records_app
     driver-class-name: org.postgresql.Driver
 
   jpa:
