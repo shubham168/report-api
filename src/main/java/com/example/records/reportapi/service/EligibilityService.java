@@ -1,5 +1,6 @@
 package com.example.records.reportapi.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.example.records.reportapi.dto.SearchRequestDto;
@@ -14,7 +15,7 @@ public interface EligibilityService {
 
     public List<SearchResponseDto> search(SearchRequestDto searchRequestDto);
 
-    public void generateExcel(HttpServletResponse httpServletResponse);
+    public void generateExcel(HttpServletResponse httpServletResponse) throws IOException;
 
-    public void generatePdf(HttpServletResponse httpServletResponse);
+    public void generatePdf(HttpServletResponse httpServletResponse) throws Exception;
 }

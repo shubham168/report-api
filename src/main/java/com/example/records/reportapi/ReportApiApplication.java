@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-
-@SpringBootApplication(scanBasePackages = "com.example.records.reportapi")
+@SpringBootApplication(scanBasePackages = "com.example.records")
 @EntityScan("com.example.records.reportapi")
 @ComponentScan("com.example.records.reportapi.service")
-// @ComponentScan("com.example.records.reportapi.controller")
+@ComponentScan("com.example.records.reportapi.controller")
+@ComponentScan("com.example.records.runner")
 @EnableJpaRepositories(basePackages = "com.example.records.reportapi.repository")
 public class ReportApiApplication {
 
